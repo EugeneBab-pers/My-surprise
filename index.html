@@ -6,7 +6,7 @@
     <title>Сюрприз для тебя ❤️</title>
     <style>
         body {
-            background-color: black;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Градиентный фон от розового к оранжевому */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -17,13 +17,17 @@
             font-family: Arial, sans-serif;
             position: relative;
         }
+
+        /* Стили для изображения сердца */
         img {
             width: 200px;
             transition: transform 0.3s ease-in-out;
             position: absolute;
             z-index: 0;
             animation: heartbeat 1.5s ease-in-out infinite;
+            /* Убрали тени */
         }
+
         /* Анимация, имитирующая сердцебиение */
         @keyframes heartbeat {
             0% {
@@ -36,9 +40,12 @@
                 transform: scale(1);
             }
         }
+
         img:active {
             transform: scale(1.1);
         }
+
+        /* Стили для кнопки */
         button {
             background-color: red;
             color: white;
@@ -49,17 +56,24 @@
             cursor: pointer;
             margin-top: -40px;
             z-index: 1;
+            /* Убрали тень */
         }
+
         button:hover {
             background-color: darkred;
+            transform: scale(1.1); /* Увеличение кнопки при наведении */
         }
+
+        /* Стили для случайных картинок */
         .random-image {
             width: 50px; /* Размер картинок */
             height: 50px;
             position: absolute;
             display: none; /* Скрыты изначально */
             animation: fadeOut 4s forwards; /* Анимация исчезновения */
+            /* Убрали тень */
         }
+
         /* Анимация исчезновения картинок */
         @keyframes fadeOut {
             0% {
