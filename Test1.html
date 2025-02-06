@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сюрприз для тебя ❤️</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        img {
+            width: 200px;
+            transition: transform 0.3s ease-in-out;
+            position: absolute;
+            z-index: 0;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        /* Анимация, имитирующая сердцебиение */
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        img:active {
+            transform: scale(1.1);
+        }
+        button {
+            background-color: red;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: -40px;
+            z-index: 1;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+        .random-image {
+            width: 50px; /* Размер картинок */
+            height: 50px;
+            position: absolute;
+            display: none; /* Скрыты изначально */
+            animation: fadeOut 4s forwards; /* Анимация исчезновения */
+        }
+        /* Анимация исчезновения картинок */
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1280px-Heart_coraz%C3%B3n.svg.png" alt="Heart" onclick="animateHeart()">
+    <button onclick="playAudio()">❤️ Play ❤️</button>
+    <audio id="audio" src="file:///C:/Users/babar/Desktop/Recording.m4a"></audio> <!-- Путь к вашему файлу -->
+
+    <div id="images-container"></div>
+
+    <script>
+        // Функция для воспроизведения аудио и появления картинок
+        function playAudio() {
+            const audio = document.getElementById('audio');
+            audio.play();
+            
+            // Появление картинок через 1 секунду после нажатия на кнопку
+            setTimeout(() => {
+                showRandomImages();
+            }, 1000);
+        }
+
+        // Функция для анимации сердца
+        function animateHeart() {
+            const heart = document.querySelector('img');
+            heart.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                heart.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Функция для отображения случайных картинок
+        function showRandomImages() {
+            const container = document.getElementById('images-container');
+            const imageUrl = "file:///C:/Users/babar/Desktop/OIP-removebg-preview.png";
+
+            // Количество картинок
+            const imageCount = Math.floor(Math.random() * 6) + 10; // от 10 до 15 картинок
+
+            for (let i = 0; i < imageCount; i++) {
+                const image = document.createElement('img');
+                image.src = imageUrl;
+                image.classList.add('random-image');
+                
+                // Случайное положение картинки на экране
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+
+                image.style.left = `${x}px`;
+                image.style.top = `${y}px`;
+
+                // Показываем картинку
+                container.appendChild(image);
+                image.style.display = 'block';
+
+                // Картинка исчезает через 4 секунды
+                setTimeout(() => {
+                    image.style.display = 'none';
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+</html>
